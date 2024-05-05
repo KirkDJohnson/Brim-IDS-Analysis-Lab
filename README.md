@@ -21,19 +21,19 @@ In this lab, I received a Linux VM equipped with packet capture analysis tools t
 <h2>Lab Overview:</h2>
 
 <p align="center">
-Scenerio for the lab.<br/>
+Scenario for the lab.<br/>
 <img src="https://github.com/KirkDJohnson/Malicious-Download-Analysis-with-Brim-Lab/assets/164972007/130925aa-64bb-433d-80a7-7b8429502c70"  alt="Brim Analysis"/>
 <br />
 <br />
-With the tools provided in the lavb I choose to first use Brim as it has the most enriched data compared to Wireshark and Network Miner.<br/>
+With the tools provided in the lab I chose to first use Brim as it has the most enriched data compared to Wireshark and Network Miner.<br/>
 <img src="https://github.com/KirkDJohnson/Malicious-Download-Analysis-with-Brim-Lab/assets/164972007/c6423690-ae47-4427-85d4-bf330ed451d2"  alt="Brim Analysis"/>
 <br />
 <br />
-Seeing that are Suricata IDS logs, I filtered to see what alerts where generated. The alert " Misc activity, A network Trojan was detected, Potential Corporate..." I first investigated.<br/>
+See that there are Suricata IDS logs, I filtered to see what alerts where generated. The alert "Misc activity, A network Trojan was detected, Potential Corporate..." I first investigated.<br/>
 <img src="https://github.com/KirkDJohnson/Malicious-Download-Analysis-with-Brim-Lab/assets/164972007/94a1a5b4-985e-4e25-a268-d5152db72b02"  alt="Brim Analysis"/>
 <br />
 <br />
-Filtering for the source IP that triggered the alert, it shows three alerts, sparked from downloading an "non-executable" from the internet which is often used for mawlare to disguise a malicious file.<br/>
+Filtering for the source IP that triggered the alert, it shows three alerts. I first examined the alert generated from downloading an "non-executable" from the internet which is often used for mawlare to disguise a malicious file.<br/>
 <img src="https://github.com/KirkDJohnson/Malicious-Download-Analysis-with-Brim-Lab/assets/164972007/f3ac73e8-f61b-41a0-8bcb-01f420c13036"  alt="Brim Analysis"/>
 <br />
 <br />
@@ -41,7 +41,7 @@ Doubling clicking on the first alert provides further details that revealed the 
 <img src="https://github.com/KirkDJohnson/Malicious-Download-Analysis-with-Brim-Lab/assets/164972007/74791c30-5572-4b1d-afe3-c710546ae826"  alt="Brim Analysis"/>
 <br />
 <br />
-However, the third alert is generted with the signature "ET POLICY PE EXE or DLL Windows file download HTTP", which indicates a different file extension than the previous alert <br/>
+However, the third alert that was generated had the signature "ET POLICY PE EXE or DLL Windows file download HTTP", which indicates a different file extension than the previous alert. <br/>
 <img src="https://github.com/KirkDJohnson/Malicious-Download-Analysis-with-Brim-Lab/assets/164972007/8443dc8e-e2b9-418a-a9af-b62860916fa8"  alt="Brim Analysis"/>
 <br />
 <br />
@@ -77,15 +77,15 @@ I conducted further research on the two domains I found in Wireshark and Brim an
 <img src="https://github.com/KirkDJohnson/Malicious-Download-Analysis-with-Brim-Lab/assets/164972007/f518206a-e225-428c-b34d-870f3578b885"  alt="Brim Analysis"/>
 <br />
 <br />
-Lastly for this investigation, when I first examined the Suricata logs in Brim there were two alerts for "Not Suspicoius Traffic" from different IPs than the primarly attacker, but considering the host is compromised with a Trojan it is worth investigating all traffic for further Indicators of Attack<br/>
+Lastly for this investigation, when I first examined the Suricata logs in Brim there were two alerts for "Not Suspicoius Traffic" from different IPs than the primarly attacker, but considering the host is compromised with a Trojan it is worth investigating all traffic for further Indicators of Attack.<br/>
 <img src="https://github.com/KirkDJohnson/Malicious-Download-Analysis-with-Brim-Lab/assets/164972007/94a1a5b4-985e-4e25-a268-d5152db72b02"  alt="Brim Analysis"/>
 <br />
 <br />
-The first IP I examined was 64[.]225[.]65[.]166, when uploaded to VirusTotal it has a 0/90 community score, however when it is a DigitalOcean domain meaning it is hosted int he cloud very cheap ans wasily created/deleted. More importantly, in the Relations tab, it hass Passive DNS replication and Communicating files with clearly malicious entities signifying this IP to be malicious and part of the attack.<br/>
+The first IP I examined was 64[.]225[.]65[.]166, when uploaded to VirusTotal it has a 0/90 community score, however when it is a DigitalOcean domain meaning it is hosted in the cloud. This is a very cheap and easy way to create and delete servers. More importantly, in the Relations tab, it hass Passive DNS replication and Communicating files with clearly malicious entities signifying this IP to be malicious and part of the attack.<br/>
 <img src="https://github.com/KirkDJohnson/Malicious-Download-Analysis-with-Brim-Lab/assets/164972007/ea751eee-ef67-4e55-9dd3-b1dc3f929e88"  alt="Brim Analysis"/>
 <br />
 <br />
-The second IP had a bit more evidence, VirusTotal did have a labled as malicious, however, filtering for the IP on brim shows a DNS query to 2partscow[.]top. Searching for that domain in VirusTotal also shows that is malicous with relations to futher malicious domains and files.<br/>
+The second IP had a bit more evidence, VirusTotal did have a labled as malicious, however, filtering for the IP on Brim shows a DNS query to 2partscow[.]top. Searching for that domain in VirusTotal also shows that is malicous with relations to futher malicious domains and files.<br/>
 <img src="https://github.com/KirkDJohnson/Malicious-Download-Analysis-with-Brim-Lab/assets/164972007/17d65d4a-9f9c-44f7-82c6-1d7d3ef185f7"  alt="Brim Analysis"/>
 <img src="https://github.com/KirkDJohnson/Malicious-Download-Analysis-with-Brim-Lab/assets/164972007/f21aec3b-6f32-48f4-a1b2-8c6b6ed5bf16"  alt="Brim Analysis"/>
   <img src="https://github.com/KirkDJohnson/Malicious-Download-Analysis-with-Brim-Lab/assets/164972007/d3c9ae2e-84aa-4b4f-b21e-c750f28a4823"  alt="Brim Analysis"/>
